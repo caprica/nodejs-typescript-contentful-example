@@ -2,12 +2,22 @@
     "version": "0.1.0",
     "configurations": [
       {
-        "name": "Debug main.ts",
+        "name": "Teardown command",
         "type": "node",
         "request": "launch",
         "cwd": "${workspaceRoot}",
-        "runtimeArgs": ["-r", "ts-node/register"],
-        "args": ["${workspaceRoot}/src/main.ts"]
+        "runtimeArgs": ["-r", "ts-node/register", "--preserve-symlinks", "--nolazy"],
+        "args": ["${workspaceRoot}/src/main.ts", "teardown"],
+        "outputCapture": "std"
+      },
+      {
+        "name": "Setup command",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "runtimeArgs": ["-r", "ts-node/register", "--preserve-symlinks", "--nolazy"],
+        "args": ["${workspaceRoot}/src/main.ts", "setup"],
+        "outputCapture": "std"
       }
     ]
   }

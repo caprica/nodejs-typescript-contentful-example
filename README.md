@@ -1,85 +1,31 @@
-# NodeJS with Typescript example
+# NodeJS with Typescript example for Contentful
 
 This is a bare-bones project showing how to write a simple NodeJS application
-using Typescript and Visual Studio Code.
+using Typescript and Visual Studio Code, and access the Contentful Content
+Management (CMA) API.
 
-It also shows how to use `import` rather than `require` to use depenencies.
+See https://github.com/caprica/nodejs-typescript-example for a vanilla project.
 
-## Package dependencies
+## Contentful features
 
-### Sourcing environment variables
+This project shows:
 
-To set process environment variables from `.env` files:
+ - Contentful 'plain' Javascript SDK API
+ - creation of assets (images) and entries
+ - fields in the content model that link to other entries
+ - teardown of previously created test data
+ - bulk operations
 
-```shell
-npm install dotenv
-```
+## Other features
 
-The `.env` file is not committed to this repository since it may typically
-contain private API keys or other secrets.
+ - FakerJS for generating text content
+ - Picsum for generating image content
+ - Winston for logging
 
-### Utilities
+## Notes
 
-Here, `lodash` and `faker` are just example modules that happened to be useful.
+### FakerJS
 
-```shell
-npm install lodash
-npm install --save-dev @types/lodash
-npm install --save-dev @faker-js/faker
-```
-
-### Typescript
-
-`ts-node` is used to dynamically transpile the Typescript code to Javascript
-when launching from Visual Studio Code.
-
-The other dependencies here are standard Typescript, and the type-definitions
-for the utility libraries imported above.
-
-```shell
-npm install --save-dev typescript
-npm install --save-dev ts-node
-npm install --save-dev @tsconfig/node16
-npm install --save-dev @types/node
-npm install --save-dev @types/lodash
-```
-
-## tsconfig.json
-
-A very simple Typescript configuration is all that is needed:
-
-```json
-{
-  "extends": "@tsconfig/node16/tsconfig.json",
-  "compilerOptions": {},
-  "include": ["src"],
-  "exclude": ["node_modules"]
-}
-```
-
-## Visual Studio Code Launch Configuration
-
-In `.vscode/launch.json`, use `ts-node` to launch the application directly,
-without a manual compilation step:
-
-```json
-{
-    "version": "0.1.0",
-    "configurations": [
-      {
-        "name": "Debug main.ts",
-        "type": "node",
-        "request": "launch",
-        "cwd": "${workspaceRoot}",
-        "runtimeArgs": ["-r", "ts-node/register"],
-        "args": ["${workspaceRoot}/src/main.ts"]
-      }
-    ]
-}
-```
-
-## References
-
-This article was very helpful:
-
-https://blog.appsignal.com/2022/01/19/how-to-set-up-a-nodejs-project-with-typescript.html
+Faker's wordlists do contain some words that may not be appropriate in a formal
+business setting and therefore consideration should be given to implementing
+word filters.
